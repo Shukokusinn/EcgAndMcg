@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EB10D8A9-0E09-4AF3-9C7E-50465FF04E33}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ape.EcgSolu.WorkUnit</RootNamespace>
+    <AssemblyName>EcgWorkbeanch</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\ExGExecDir\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\ExGExecDir\bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>.\Images\ecg.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ReachFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Config\ConfigOp.cs" />
+    <Compile Include="Config\ConfigWindow.xaml.cs">
+      <DependentUpon>ConfigWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EcgRuler.cs" />
+    <Compile Include="Diagnosis\AjustVisual.cs" />
+    <Compile Include="Diagnosis\AjustWindow.xaml.cs">
+      <DependentUpon>AjustWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Diagnosis\DiagWindow.xaml.cs">
+      <DependentUpon>DiagWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Diagnosis\PreviewWindow.xaml.cs">
+      <DependentUpon>PreviewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Diagnosis\ReportVisualBase.cs" />
+    <Compile Include="Diagnosis\ReportVisualFactory.cs" />
+    <Compile Include="Diagnosis\ReportVisual1.cs" />
+    <Compile Include="Diagnosis\ReportVisual2.cs" />
+    <Compile Include="Draw\DiagDraw.cs" />
+    <Compile Include="Draw\DrawerBase.cs" />
+    <Compile Include="Draw\Drawing12.cs" />
+    <Compile Include="Global.cs" />
+    <Compile Include="Utility\Filter.cs" />
+    <Compile Include="Utility\Helper.cs" />
+    <Compile Include="Sampling\NewExamWindow.xaml.cs">
+      <DependentUpon>NewExamWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Sampling\SamplingWindow.xaml.cs">
+      <DependentUpon>SamplingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StatusConverter.cs" />
+    <Compile Include="Utility\Imaging.cs" />
+    <Page Include="Config\ConfigWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Diagnosis\AjustWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Diagnosis\DiagWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Diagnosis\PreviewWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Sampling\NewExamWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Sampling\SamplingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SQLiteDatabase.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ape.EcgSolu.BLL\ape.EcgSolu.BLL.csproj">
+      <Project>{9A0C4087-B5C2-4685-8154-7A5C0D9BC23C}</Project>
+      <Name>ape.EcgSolu.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ape.EcgSolu.DeviceSampling\ape.EcgSolu.IDevice.csproj">
+      <Project>{4793E7E7-D2D6-4C2B-A0D2-DA50A947194E}</Project>
+      <Name>ape.EcgSolu.IDevice</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ape.Ecgsolu.Model\ape.EcgSolu.Model.csproj">
+      <Project>{FCDB6E37-E90B-4737-A79C-AC485C7829D3}</Project>
+      <Name>ape.EcgSolu.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ape.EcgSystem.Analysis\ape.EcgSystem.Analysis.csproj">
+      <Project>{4149B40B-03ED-40DC-8A9B-9003FB04C5A6}</Project>
+      <Name>ape.EcgSystem.Analysis</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ChangeLog.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Sampling_40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Config_40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Search_40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Export_40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Start_40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Save_40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Stop_40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Refresh_40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Diagnosis_40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Print_40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Preview_40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Measure_40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Delete_40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Adjust_40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Gain1_40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Gain2_40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Gain3_40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\PngFile_40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\XpsFile_40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Upload.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

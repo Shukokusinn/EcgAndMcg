@@ -1,0 +1,62 @@
+﻿<Window x:Class="ape.EcgSolu.WorkUnit.NewExamWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="NewExam" Height="480" Width="600" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" FontSize="16" ResizeMode="NoResize">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="90" />
+            <RowDefinition Height="50" />           
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*" />
+            <ColumnDefinition Width="150*"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="150*"/>            
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="姓名" VerticalAlignment="Center" />
+        <TextBox Grid.Row="0" Grid.Column="1"  Margin="10" Name="TextBoxPatName" Text="{Binding PatientName}" VerticalAlignment="Center" MaxLength="100" />
+        <TextBlock Grid.Row="0" Grid.Column="2" Text="性别" VerticalAlignment="Center" />
+        <StackPanel Grid.Row="0" Grid.Column="3" Orientation="Horizontal" Margin="10" VerticalAlignment="Center">
+            <RadioButton Name="RadioMale" Content="男" Margin="0,0,15,0"></RadioButton>
+            <RadioButton Name="RadioFemale" Content="女"></RadioButton>
+        </StackPanel>
+        <TextBlock Text="年龄" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"></TextBlock>
+        <TextBox Name="TextBoxAge" Grid.Row="1" Grid.Column="1" Margin="10" Text="{Binding Age}" VerticalAlignment="Center" MaxLength="100"></TextBox>
+        <TextBlock Text="生日"  Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" />
+        <DatePicker Name="DatePickerBirthday" Grid.Row="1" Grid.Column="3" Margin="10" SelectedDate="{Binding Birthday}" VerticalAlignment="Center" />
+        <TextBlock Text="门诊号" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" />
+        <TextBox Name="TextBoxOutPatientNo" Margin="10" Grid.Row="2" Grid.Column="1" Text="{Binding OutPatientNo}" VerticalAlignment="Center" MaxLength="100"></TextBox>
+        <TextBlock Text="住院号" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" />
+        <TextBlock Text="电话" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" />
+        <TextBox Grid.Row="3" Grid.Column="1" Margin="10" Text="{Binding PatientTelephone}" VerticalAlignment="Center" MaxLength="100" />
+        <TextBlock Text="送检科室" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" />
+        <TextBox Text="{Binding ApplyDept}" Margin="10" Grid.Row="3" Grid.Column="3" VerticalAlignment="Center" MaxLength="100" />
+        <TextBlock Text="送检医生" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" />
+        <TextBox Text="{Binding ApplyDoctor}" Grid.Row="4" Grid.Column="1" Margin="10" VerticalAlignment="Center" MaxLength="100" />
+        <TextBox Name="TextBoxInPatientNo" Grid.Row="2" Grid.Column="3" Margin="10" Text="{Binding InPatientNo}" VerticalAlignment="Center" MaxLength="100"></TextBox>
+        <TextBlock Text="医疗保险号" Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" />
+        <TextBox Name="textBoxInsuranceNo" Grid.Row="4" Grid.Column="3" VerticalAlignment="Center" Margin="10" Text="{Binding InsuranceNo}" MaxLength="100"></TextBox>
+        <TextBlock Text="临床诊断" Grid.Row="5" />
+        <TextBox Name="textBoxClinicDiag" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,5,5,5" Text="{Binding ClinicDiag}" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" />
+        <Grid Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="4">
+            <Grid.RowDefinitions>
+                <RowDefinition />                
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="125"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="125"/>
+                <ColumnDefinition Width="10*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Row="0" Grid.Column="1" Name="buttonSave" Content="确定" Width="120" Height="40" Click="buttonSave_Click" VerticalAlignment="Center" HorizontalAlignment="Center"></Button>
+            <Button Grid.Row="0" Grid.Column="3" Name="buttonCancel" Content="取消" Click="buttonCancel_Click" Width="120" Height="40" VerticalAlignment="Center" HorizontalAlignment="Center"></Button>
+        </Grid>        
+    </Grid>
+</Window>

@@ -1,0 +1,23 @@
+ape.EcgSolu解决方案的代码说明
+
+更新日期：2015-02-11
+更新说明：
+ape.EcgSolu.DAL项目中，EcgDAL类的GetById()方法中，从数据库中读取数据时，增加了读取DataStart这个值。DataStart打印报告起点，从第几个采样点开始绘图。
+ape.EcgSolu.WokrUnit项目中，Diagnosis目录下的ReportVisual1和ReportVisual2类中，initVisual()方法中，这行代码this.drawWave(dc, waveRect, yBase, ecgEntity.Data, ecgEntity.uVpb, ecgEntity.SamplingRate, ecgEntity.DataStart,waveThickness);中修改，把DataStart值写入。之前是默认为0.
+效果：
+诊断界面，通过拖动下方滚动条选择哪一段图形，然后单击右侧的“保存”按钮，之后预览或者打印报告时，图形的起点，跟诊断界面的起点是一致的。
+
+解决方案包含以下项目
+ape.EcgSolu.BLL：业务逻辑层，基本上就是数据访问层的一个包装，另外包含一些其他处理逻辑。
+ape.EcgSolu.DAL：数据访问层，对数据库的访问的封装
+ape.EcgSolu.Model:数据表现实体类
+ape.EcgSolu.WorkUnit:心电工作站软件的界面（主程序）
+ape.EcgSystem.Analyssi:对osea21的算法的C#版翻译
+软件的参数设置保存在app.config文件中
+
+1.采样部分，硬件通讯的模块都在ape.EcgSolu.IDevice项目中，目前的设备是DeviceTcg12类来实现数据采集的。
+主程序通过监听DataRecived事件来接收IDevice的数据，绘制到屏幕上，并保存下来。
+
+2.所有的数据，包括病人基本信息和原始采样数据，都是通过数据访问层来实现的，ape.EcgSolu.DAL项目即为数据访问层项目。项目下EcgDAL类是对数据的访问操作。包括写入和读取和查询。
+
+3.采样原始数据保存以short类型的形式存储的。每一个采样点对应一个short数。原始数据存在数据库中，ecg表的Data字段。访问操作请参考ape.EcgSolu.DAL项目下的EcgDAL类的Insert和Get的操作方法。

@@ -1,0 +1,209 @@
+﻿<Window xmlns:my="clr-namespace:ape.EcgSolu.WorkUnit.Controls"  
+        x:Class="ape.EcgSolu.WorkUnit.Diagnosis.DiagWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="诊断" Height="400" Width="600" WindowState="Maximized" Loaded="Window_Loaded" ShowInTaskbar="False">
+    <Window.Resources>
+        
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition />
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <ToolBar Grid.Row="0" Height="70">
+            <Button Name="buttonPrint" Click="buttonPrint_Click">
+                <Button.Content>
+                    <DockPanel>
+                        <Image Source="/EcgWorkbeanch;component/Images/Print_40.png" DockPanel.Dock="Top" Stretch="None" />
+                        <TextBlock Text="报告" DockPanel.Dock="Bottom" TextAlignment="Center"/>
+                    </DockPanel>
+                </Button.Content>
+            </Button>
+            <Button Name="buttonPreview" Click="buttonPreview_Click">
+                <Button.Content>
+                    <DockPanel>
+                        <Image Source="/EcgWorkbeanch;component/Images/Preview_40.png" DockPanel.Dock="Top" Stretch="None"/>
+                        <TextBlock Text="预览" DockPanel.Dock="Bottom" TextAlignment="Center"/>
+                    </DockPanel>
+                </Button.Content>
+            </Button>
+            <CheckBox Name="checkBoxMeasure" Click="checkBoxMeasure_Click">
+                <CheckBox.Content>
+                    <DockPanel>
+                        <Image Source="/EcgWorkbeanch;component/Images/Measure_40.png" DockPanel.Dock="Top" Stretch="None"/>
+                        <TextBlock Text="测量" DockPanel.Dock="Bottom" TextAlignment="Center"/>
+                    </DockPanel>
+                </CheckBox.Content>
+            </CheckBox>
+            <Button Name="buttonAdjust" Click="buttonAdjust_Click">
+                <StackPanel Orientation="Vertical">
+                    <Image Source="/EcgWorkbeanch;component/Images/Adjust_40.png" />
+                    <TextBlock Text="分析" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Button Name="buttonGain" Click="buttonGain_Click">
+                <StackPanel Orientation="Vertical">
+                    <Image Name="imageGain" Source="/EcgWorkbeanch;component/Images/Gain2_40.png" />
+                    <TextBlock Text="增益" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Popup Name="popupGain" StaysOpen="False" IsOpen="False" Placement="Bottom" PlacementTarget="{Binding ElementName=buttonGain}">
+                <ListBox Name="listBoxGain" SelectionChanged="listBoxGain_SelectionChanged">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="SkyBlue" />
+                                    <Setter Property="Foreground" Value="White" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBoxItem>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/EcgWorkbeanch;component/Images/Gain1_40.png" />
+                            <TextBlock Text="5mm/mV" VerticalAlignment="Center"/>
+                        </StackPanel>                        
+                    </ListBoxItem>
+                    <ListBoxItem>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/EcgWorkbeanch;component/Images/Gain2_40.png" />
+                            <TextBlock Text="10mm/mV" VerticalAlignment="Center"/>
+                        </StackPanel>                       
+                    </ListBoxItem>
+                    <ListBoxItem>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/EcgWorkbeanch;component/Images/Gain3_40.png" />
+                            <TextBlock Text="20mm/mV" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </ListBoxItem>
+                </ListBox>
+            </Popup>
+            <Button Name="buttonReportOutput" Click="buttonReportOutput_Click">
+                <StackPanel Orientation="Vertical">
+                    <Image Source="/EcgWorkbeanch;component/Images/Export_40.png" />
+                    <TextBlock Text="报告输出" HorizontalAlignment="Center" />
+                </StackPanel>
+            </Button>
+            <Popup Name="popupReportOutput" StaysOpen="False" IsOpen="False" Placement="Bottom" PlacementTarget="{Binding ElementName=buttonReportOutput}">
+                <ListBox Name="listBoxReportOutput">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="SkyBlue" />
+                                    <Setter Property="Foreground" Value="White" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBoxItem>                        
+                        <StackPanel Name="stackPanelReportImg" Orientation="Horizontal" MouseLeftButtonDown="stackPanelReportImg_MouseLeftButtonDown">
+                            <Image Source="/EcgWorkbeanch;component/Images/PngFile_40.png" />
+                            <TextBlock Text="Png图片" VerticalAlignment="Center"/>
+                        </StackPanel>                                              
+                    </ListBoxItem>
+                    <ListBoxItem>
+                        <StackPanel Name="stackPanelReportXps" Orientation="Horizontal" MouseLeftButtonDown="stackPanelReportXps_MouseLeftButtonDown">
+                            <Image Source="/EcgWorkbeanch;component/Images/XpsFile_40.png" />
+                            <TextBlock Text="XPS文档" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </ListBoxItem>                   
+                </ListBox>
+            </Popup>
+        </ToolBar>
+        <DockPanel Grid.Row="1">
+            <ScrollViewer Name="ScrollViewInfo" DockPanel.Dock="Right" Width="300" FontSize="14">
+                <StackPanel Orientation="Vertical">
+                    <Expander IsExpanded="True" Header="基本信息" BorderBrush="#FF333333" Padding="5">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="60*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="姓名" Grid.Row="0" Grid.Column="0" />
+                            <TextBlock Name="TextBlockName" Text="{Binding PatientName}" Grid.Row="0" Grid.Column="1" />
+                            <TextBlock Text="性别" Grid.Row="1" Grid.Column="0" />
+                            <TextBlock Name="TextBlockGender" Grid.Row="1" Grid.Column="1" />
+                            <TextBlock Text="年龄" Grid.Row="2" Grid.Column="0" />
+                            <TextBlock Name="TextBlockAge" Text="{Binding Age}" Grid.Row="2" Grid.Column="1" />
+                            <TextBlock Text="检查时间"  Grid.Row="3" Grid.Column="0" />
+                            <TextBlock Name="TextBlockSamplingDate" Text="{Binding SamplingDate,StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}" Grid.Row="3" Grid.Column="1" />
+                        </Grid>
+                    </Expander>
+                    <Expander Header="参考参数" IsExpanded="True" Margin="0,10,0,0" BorderBrush="#FF333333" Padding="5">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="HR(bpm)" Grid.Row="0" Grid.Column="0" />
+                            <TextBox Name="textBoxHeartRate" Grid.Row="0" Grid.Column="1" />                           
+                            <TextBlock Text="RR(ms)" Grid.Row="1" Grid.Column="0" />
+                            <TextBox Name="textBoxRR" Grid.Row="1" Grid.Column="1" />                          
+                            <TextBlock Text="RV1(mV)" Grid.Row="2" Grid.Column="0" />
+                            <TextBox Name="textBoxRV1" Grid.Row="2" Grid.Column="1" />
+                            <TextBlock Text="SV1(mV)" Grid.Row="3" Grid.Column="0" />
+                            <TextBox Name="textBoxSV1"  Grid.Row="3" Grid.Column="1" />
+                            <TextBlock Text="RV5(mV)"  Grid.Row="4" Grid.Column="0" />
+                            <TextBox Name="textBoxRV5"  Grid.Row="4" Grid.Column="1" />
+                            <TextBlock Text="SV5(mV)" Grid.Row="5" Grid.Column="0" />
+                            <TextBox Name="textBoxSV5" Grid.Row="5" Grid.Column="1" />
+                            <TextBlock Text="RV5+SV1(mV)" Grid.Row="6" Grid.Column="0" />
+                            <TextBox Name="textBoxRV5SV1" Grid.Row="6" Grid.Column="1" />                            
+                            <TextBlock Text="RV1+SV5" Grid.Row="7" Grid.Column="0" />
+                            <TextBox Name="TextBoxRV1SV5" Grid.Row="7" Grid.Column="1" />
+                            <TextBlock Text="QRS(ms)" Grid.Row="8" Grid.Column="0" />
+                            <TextBox Name="TextBoxQRS" Grid.Row="8" Grid.Column="1" />
+                            <TextBlock Text="PR(ms)" Grid.Row="9" />
+                            <TextBox Name="textBoxPR" Grid.Row="9" Grid.Column="1" />
+                        </Grid>
+                    </Expander>
+                    <Expander Header="诊断" IsExpanded="True" BorderBrush="#FF333333" Margin="0,10,0,0" Padding="5">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="诊断结论" />
+                            <TextBox Name="TextBoxDiagResult" Text="{Binding DiagResult}" TextWrapping="Wrap" MinHeight="150" AcceptsReturn="True" MaxLength="300" />
+                            <Button Name="ButtonSave" Content="保存" Height="40" Click="ButtonSave_Click" />
+                            <Expander Header="诊断术语">
+                                <StackPanel Name="StackPanelDiagWord" Orientation="Vertical">                                                           
+                                </StackPanel>
+                            </Expander>
+                        </StackPanel>
+                    </Expander>
+                    <Expander Header="临床诊断" IsExpanded="True" BorderBrush="#FF333333" Margin="0,10,0,0" Padding="5">
+                        <TextBlock Text="{Binding ClinicDiag}" TextWrapping="Wrap" />
+                    </Expander>
+                </StackPanel>
+            </ScrollViewer>
+            <ScrollBar Name="ScrollBarWave" DockPanel.Dock="Bottom" Orientation="Horizontal" Width="Auto" Height="15" Scroll="ScrollBarWave_Scroll" Maximum="5000" LargeChange="50" SmallChange="10" />
+            <Canvas Name="CanvasWave" MouseLeftButtonDown="CanvasWave_MouseLeftButtonDown" MouseLeftButtonUp="CanvasWave_MouseLeftButtonUp" MouseMove="CanvasWave_MouseMove" ClipToBounds="True">
+                <Image Name="ImageWave" Stretch="None" />
+                <my:EcgRuler x:Name="ecgRulerMeasure" Width="400" Height="100" Panel.ZIndex="1" Canvas.Left="50" Canvas.Top="50" Visibility="Hidden" />
+                <!--<my:EcgRuler2 x:Name="ecgRulerMeasure" Width="400" Height="100" Panel.ZIndex="1" Canvas.Left="50" Canvas.Top="50" Visibility="Hidden" />-->
+            </Canvas>
+        </DockPanel>
+        <StatusBar Grid.Row="2">
+            <TextBlock Name="textBlockInfo" />
+        </StatusBar>
+    </Grid>
+</Window>

@@ -1,0 +1,8 @@
+﻿<Window x:Class="ape.EcgSolu.WorkUnit.Diagnosis.PreviewWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="预览" Height="300" Width="300" WindowState="Maximized" xmlns:my="clr-namespace:ape.EcgSolu.WorkUnit.Diagnosis">
+    <Grid x:Name="gridReport">
+        <DocumentViewer x:Name="documentViewReport" />
+    </Grid>
+</Window>
