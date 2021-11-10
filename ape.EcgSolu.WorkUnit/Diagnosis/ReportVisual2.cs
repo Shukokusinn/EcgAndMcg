@@ -30,7 +30,7 @@ namespace ape.EcgSolu.WorkUnit.Diagnosis
         protected override DrawingVisual initVisual(Ecg ecgEntity, Color grid5mmColor, Color grid1mmColor, double grid5mmThickness,
             double grid1mmThickness, double waveThickness, bool grid5mmPoint, bool grid1mmPoint)
         {
-            string[] leadNames = new string[] { "I", "II", "III", "aVR", "aVL", "aVF", "V1", "V2", "V3", "V4", "V5", "V6" };
+            string[] leadNames = new string[] { "I", "II", "III", "aVR", "aVL", "aVF", "X1", "V2", "V3", "V4", "V5", "V6" };
             int leadCount = 12;
             Rect paperRect = new Rect(0, 0, 210 * unitPerMm,297 * unitPerMm);
             Rect waveRect = new Rect(10 * unitPerMm, 50 * unitPerMm, 190 * unitPerMm, 232 * unitPerMm);

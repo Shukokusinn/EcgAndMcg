@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
-using System.Linq;
 using System.Text;
 using ape.EcgSolu.IDAL;
 using ape.EcgSolu.Model;
 using System.Data;
 using System.IO;
-using System.Diagnostics;
 
 namespace ape.EcgSolu.DAL
 {

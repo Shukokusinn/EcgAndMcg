@@ -70,8 +70,10 @@ namespace ape.EcgSolu.WorkUnit.Draw
                     yBase[i] = yBase[i - 6];
                 }
             }
-            yBase[12] = (int)(PixelPerMM * 10 + perHeight * (6 * 2))+10;
-            yBottom = yBase[12] - (int)perHeight;
+            yBase[1] = yBase[2];
+            yBase[2] = yBase[4];
+            yBase[3] = (int)(PixelPerMM * 10 + perHeight * (6 * 2))+10;
+            yBottom = yBase[3] - (int)perHeight;
             dc = Graphics.FromImage(bmp);
             dc.SmoothingMode = SmoothingMode.AntiAlias;
             this.DrawBackGrid(dc, bmp.Width, bmp.Height);
@@ -88,25 +90,25 @@ namespace ape.EcgSolu.WorkUnit.Draw
         /// <param name="refreshRegion"></param>
         public void DrawWave(short[] data,out RectangleF[] refreshRegion)
         {
-            for (int i = 0; i < 6; i++)
-            {
-                dc.DrawLine(wavePen, xLeft, yBase[i] - valToPixel(yPrev[i], uVpb), xLeft + xStep, yBase[i] - valToPixel(data[i],uVpb));
-                yPrev[i] = data[i];                
-            }
-            dc.DrawLine(wavePen, xBottom, yBase[12] - valToPixel(yPrev[12], uVpb), xBottom + xStep, yBase[12] - valToPixel(data[1], uVpb));
-            yPrev[12] = data[1];
+            //for (int i = 0; i < 6; i++)
+            //{
+            //    dc.DrawLine(wavePen, xLeft, yBase[i] - valToPixel(yPrev[i], uVpb), xLeft + xStep, yBase[i] - valToPixel(data[i],uVpb));
+            //    yPrev[i] = data[i];                
+            //}
+            //dc.DrawLine(wavePen, xBottom, yBase[3] - valToPixel(yPrev[3], uVpb), xBottom + xStep, yBase[3] - valToPixel(data[9], uVpb));
+            //yPrev[12] = data[1];
             xLeft+=xStep;
-            for (int i = 6; i < 12; i++)
+            for (int i = 6; i < 10; i++)
             {
-                dc.DrawLine(wavePen, xRight, yBase[i] - valToPixel(yPrev[i], uVpb), xRight + xStep, yBase[i] - valToPixel(data[i],uVpb));
+                dc.DrawLine(wavePen, xBottom, yBase[i-6] - valToPixel(yPrev[i], uVpb), xBottom + xStep, yBase[i-6] - valToPixel(data[i],uVpb));
                 yPrev[i] = data[i];
             }
-            xRight+=xStep;
-            if (xLeft+xStep >= rendedImage.Width / 2)
-            {
-                xLeft = xStartL;
-                xRight = xStartR;
-            }
+            //xRight+=xStep;
+            //if (xLeft+xStep >= rendedImage.Width / 2)
+            //{
+            //    xLeft = xStartL;
+            //    xRight = xStartR;
+            //}
             xBottom += xStep; ;
             if (xBottom + xStep >= rendedImage.Width)
             {
@@ -136,56 +138,56 @@ namespace ape.EcgSolu.WorkUnit.Draw
         private void Refresh(float xLeft,float xRight,float xBottom, out RectangleF[] refreshRegion)
         {
             int width = 10 * PixelPerMM;
-            if (xLeft + width > rendedImage.Width / 2)
-            {
-                //RectangleF leftRect1 = new RectangleF(xLeft, 0, rendedImage.Width / 2 - xLeft, rendedImage.Height);
-                //RectangleF leftRect2 = new RectangleF(xStartL, 0, width - (rendedImage.Width / 2 - xLeft), rendedImage.Height);
-                //RectangleF rightRect1 = new RectangleF(xRight, 0, rendedImage.Width - xRight, rendedImage.Height);
-                //RectangleF rightRect2 = new RectangleF(xStartR, 0, width - (rendedImage.Width - xRight), rendedImage.Height);
-                RectangleF leftRect1 = new RectangleF(xLeft, 0, rendedImage.Width / 2 - xLeft, yBottom);
-                RectangleF leftRect2 = new RectangleF(xStartL, 0, width - (rendedImage.Width / 2 - xLeft), yBottom);
-                RectangleF rightRect1 = new RectangleF(xRight, 0, rendedImage.Width - xRight, yBottom);
-                RectangleF rightRect2 = new RectangleF(xStartR, 0, width - (rendedImage.Width - xRight), yBottom);
-                Region clip = new Region(leftRect1);
-                clip.Union(leftRect2);
-                clip.Union(rightRect1);
-                clip.Union(rightRect2);
-                if (xBottom + width > rendedImage.Width)
-                {
-                    RectangleF BottomRect1 = new RectangleF(xBottom, yBottom, rendedImage.Width - xBottom, rendedImage.Height - yBottom);
-                    RectangleF BottomRect2 = new RectangleF(xStartB, yBottom, width - (rendedImage.Width - xBottom), rendedImage.Height - yBottom);
-                    clip.Union(BottomRect1);
-                    clip.Union(BottomRect2);
-                    refreshRegion = new RectangleF[6] { leftRect1, leftRect2, rightRect1, rightRect2, BottomRect1, BottomRect2 };
-                }
-                else
-                {
-                    RectangleF BottomRect = new RectangleF(xBottom, yBottom, width , rendedImage.Height - yBottom);
-                    clip.Union(BottomRect);
-                    refreshRegion = new RectangleF[5] { leftRect1, leftRect2, rightRect1, rightRect2, BottomRect };
-                }
-                dc.Clip = clip;
-               // refreshRegion = new RectangleF[4] { leftRect1, leftRect2, rightRect1, rightRect2 };
-            }
-            else
+            //if (xLeft + width > rendedImage.Width / 2)
+            //{
+            //    //RectangleF leftRect1 = new RectangleF(xLeft, 0, rendedImage.Width / 2 - xLeft, rendedImage.Height);
+            //    //RectangleF leftRect2 = new RectangleF(xStartL, 0, width - (rendedImage.Width / 2 - xLeft), rendedImage.Height);
+            //    //RectangleF rightRect1 = new RectangleF(xRight, 0, rendedImage.Width - xRight, rendedImage.Height);
+            //    //RectangleF rightRect2 = new RectangleF(xStartR, 0, width - (rendedImage.Width - xRight), rendedImage.Height);
+            //    RectangleF leftRect1 = new RectangleF(xLeft, 0, rendedImage.Width / 2 - xLeft, yBottom);
+            //    RectangleF leftRect2 = new RectangleF(xStartL, 0, width - (rendedImage.Width / 2 - xLeft), yBottom);
+            //    RectangleF rightRect1 = new RectangleF(xRight, 0, rendedImage.Width - xRight, yBottom);
+            //    RectangleF rightRect2 = new RectangleF(xStartR, 0, width - (rendedImage.Width - xRight), yBottom);
+            //    Region clip = new Region(leftRect1);
+            //    clip.Union(leftRect2);
+            //    clip.Union(rightRect1);
+            //    clip.Union(rightRect2);
+            //    if (xBottom + width > rendedImage.Width)
+            //    {
+            //        RectangleF BottomRect1 = new RectangleF(xBottom, yBottom, rendedImage.Width - xBottom, rendedImage.Height - yBottom);
+            //        RectangleF BottomRect2 = new RectangleF(xStartB, yBottom, width - (rendedImage.Width - xBottom), rendedImage.Height - yBottom);
+            //        clip.Union(BottomRect1);
+            //        clip.Union(BottomRect2);
+            //        refreshRegion = new RectangleF[6] { leftRect1, leftRect2, rightRect1, rightRect2, BottomRect1, BottomRect2 };
+            //    }
+            //    else
+            //    {
+            //        RectangleF BottomRect = new RectangleF(xBottom, yBottom, width , rendedImage.Height - yBottom);
+            //        clip.Union(BottomRect);
+            //        refreshRegion = new RectangleF[5] { leftRect1, leftRect2, rightRect1, rightRect2, BottomRect };
+            //    }
+            //    dc.Clip = clip;
+            //   // refreshRegion = new RectangleF[4] { leftRect1, leftRect2, rightRect1, rightRect2 };
+            //}
+            //else
             {
                 //RectangleF leftRect = new RectangleF(xLeft, 0, width, rendedImage.Height);
                 //RectangleF rightRect = new RectangleF(xRight, 0, width, rendedImage.Height);
-                RectangleF leftRect = new RectangleF(xLeft, 0, width, yBottom);
-                RectangleF rightRect = new RectangleF(xRight, 0, width, yBottom);
+                RectangleF leftRect = new RectangleF(xLeft, 0, width, 1);
+                RectangleF rightRect = new RectangleF(xRight, 0, width, 1);
                 Region clip = new Region(leftRect);
                 clip.Union(rightRect);
                 if (xBottom + width > rendedImage.Width)
                 {
-                    RectangleF BottomRect1 = new RectangleF(xBottom, yBottom, rendedImage.Width - xBottom, rendedImage.Height - yBottom);
-                    RectangleF BottomRect2 = new RectangleF(xStartB, yBottom, width - (rendedImage.Width - xBottom), rendedImage.Height - yBottom);
+                    RectangleF BottomRect1 = new RectangleF(xBottom, 0, rendedImage.Width - xBottom, rendedImage.Height);
+                    RectangleF BottomRect2 = new RectangleF(xStartB, 0, width - (rendedImage.Width - xBottom), rendedImage.Height);
                     clip.Union(BottomRect1);
                     clip.Union(BottomRect2);
                     refreshRegion = new RectangleF[4] { leftRect, rightRect, BottomRect1, BottomRect2 };
                 }
                 else
                 {
-                    RectangleF BottomRect = new RectangleF(xBottom, yBottom, width, rendedImage.Height - yBottom);
+                    RectangleF BottomRect = new RectangleF(xBottom, 0, width, rendedImage.Height);
                     clip.Union(BottomRect);
                     refreshRegion = new RectangleF[3] { leftRect, rightRect, BottomRect };
                 }
@@ -244,12 +246,12 @@ namespace ape.EcgSolu.WorkUnit.Draw
         {
             string[] leadNameL = new string[] { "I", "II", "III", "aVR", "aVL", "aVF" };
             string[] leadNameR = new string[] { "V1", "V2", "V3", "V4", "V5", "V6" };
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 4; i++)
             {
-                this.DrawLeadNameUnit(dc, textFont, wavePen, leadNameL[i], 0, yBase[i], PixelPerMM);
-                this.DrawLeadNameUnit(dc, textFont, wavePen, leadNameR[i], rendedImage.Width / 2, yBase[i], PixelPerMM);
+               // this.DrawLeadNameUnit(dc, textFont, wavePen, leadNameL[i], 0, yBase[i], PixelPerMM);
+                this.DrawLeadNameUnit(dc, textFont, wavePen, leadNameR[i], 0, yBase[i], PixelPerMM);
             }
-            this.DrawLeadNameUnit(dc, textFont, wavePen, leadNameL[1], 0, yBase[12], PixelPerMM);
+           // this.DrawLeadNameUnit(dc, textFont, wavePen, leadNameL[1], 0, yBase[12], PixelPerMM);
         }
 
         /// <summary>

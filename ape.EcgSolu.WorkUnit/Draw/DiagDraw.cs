@@ -218,7 +218,7 @@ namespace ape.EcgSolu.WorkUnit.Draw
         private void DrawLeadName(Graphics dc, Font textFont, int width, int height, int[] yBase, int gain = 10)
         {
             string[] leadNameL = new string[] { "I", "II", "III", "aVR", "aVL", "aVF" };
-            string[] leadNameR = new string[] { "V1", "V2", "V3", "V4", "V5", "V6" };
+            string[] leadNameR = new string[] { "X1", "V2", "V3", "V4", "V5", "V6" };
             for (int i = 0; i < 6; i++)
             {
            //     this.DrawLeadNameUnit(dc, textFont, wavePen, leadNameL[i], 0, yBase[i], PixelPerMM, gain);
